@@ -162,7 +162,7 @@ echo "=============================="
 echo "      BadVPN "
 echo "=============================="
 # Install BadVPN
-wget https://raw.githubusercontent.com/RicKbrL/badvpn/master/easyinstall && bash easyinstall
+# wget https://raw.githubusercontent.com/RicKbrL/badvpn/master/easyinstall && bash easyinstall
 cd
 echo -e "\e[40;38;5;101m " 
 echo "=============================="
@@ -174,7 +174,7 @@ echo -e "\e[40;38;5;101m "
 echo "=============================="
 echo "      PRIVOXY "
 echo "=============================="
-wget https://raw.githubusercontent.com/jm051484/AutoPrivoxy/master/AutoPrivoxy.sh && bash AutoPrivoxy.sh
+# wget https://raw.githubusercontent.com/jm051484/AutoPrivoxy/master/AutoPrivoxy.sh && bash AutoPrivoxy.sh
 clear
 # freeradius
 apt-get -y install freeradius
