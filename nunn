@@ -285,38 +285,30 @@ cp /etc/openvpn/ta.key /etc/openvpn/ta.key
  cat <<'myOpenVPNconf' > /etc/openvpn/server_tcp.conf
 # My OpenVPN 
 port MyOvpnPort
-dev tun
 proto tcp
-ca /etc/openvpn/ca.crt
-cert /etc/openvpn/server.crt
-key /etc/openvpn/server.key
-dh /etc/openvpn/dh.pem
-tls-auth /etc/openvpn/ta.key 0
-duplicate-cn
-cipher none
-ncp-disable
-auth none
-comp-lzo
-plugin /etc/openvpn/openvpn-auth-pam.so login
-verify-client-cert none
+dev tun
+ca ca.crt
+cert server.crt
+key server.key
+dh dh1024.pem
+tls-auth ta.key 0
+client-cert-not-required
 username-as-common-name
-max-clients 4000
-server 10.200.0.0 255.255.0.0
-tun-mtu 1500
-mssfix 1460
-reneg-sec 0
-sndbuf 393216
-rcvbuf 393216
-push "sndbuf 393216"
-push "rcvbuf 393216"
-push "redirect-gateway def1"
-push "route-method exe"
-push "route-delay 2"
-client-to-client
-keepalive 10 120
-persist-tun
+plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
+server 192.168.100.0 255.255.255.0
+ifconfig-pool-persist ipp.txt
 persist-key
-persist-remote-ip
+persist-tun
+status openvpn-status.log
+log openvpn.log
+verb 0
+cipher none
+auth none
+keepalive 1 10
+reneg-sec 0
+tcp-nodelay
+push "dhcp-option DNS 1.1.1.1"
+push "dhcp-option DNS 1.0.0.1"
 status /etc/openvpn/tcp_stats.log
 log /etc/openvpn/tcp.log
 verb 3
@@ -603,30 +595,26 @@ myNginxC
 cat <<EOF15> /var/www/openvpn/GTMConfig.ovpn
 client
 dev tun
-proto tcp
+proto tcp-client
 remote $IPADDR $OpenVPN_TCP_Port
-remote-cert-tls server
-resolv-retry infinite
-connect-retry infinite
-nobind
-tun-mtu 1500
-mssfix 1460
 persist-key
 persist-tun
+dev tun
+bind
+float
+lport 110
+remote-cert-tls server
+verb 0
 auth-user-pass
+redirect-gateway def1
+cipher none
 auth none
 auth-nocache
-cipher none
-keysize 0
-comp-lzo
-setenv CLIENT_CERT 0
+auth-retry interact
+connect-retry 0 1
+nice -20
 reneg-sec 0
-verb 3
-#http-proxy $IPADDR $Squid_Port1
 http-proxy $IPADDR $Privoxy_Port1
-http-proxy-option VERSION 1.1
-http-proxy-option CUSTOM-HEADER Host www.googleapis.com
-http-proxy-option CUSTOM-HEADER X-Forwarded-For www.googleapis.com
 
 <ca>
 $(cat /etc/openvpn/ca.crt)
