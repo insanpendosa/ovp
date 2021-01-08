@@ -631,6 +631,15 @@ http-proxy-option CUSTOM-HEADER X-Forwarded-For www.googleapis.com
 <ca>
 $(cat /etc/openvpn/ca.crt)
 </ca>
+<cert>
+$(cat /etc/openvpn/server.crt)
+</cert>
+<key>
+$(cat /etc/openvpn/server.key)
+</key>
+<tls-auth>
+$(cat /etc/openvpn/ta.key)
+</tls-auth>
 EOF15
 
 cat <<EOF16> /var/www/openvpn/SunConfig.ovpn
@@ -664,6 +673,15 @@ http-proxy-option CUSTOM-HEADER X-Forwarded-For www.viber.com.edgekey.net
 <ca>
 $(cat /etc/openvpn/ca.crt)
 </ca>
+<cert>
+$(cat /etc/openvpn/server.crt)
+</cert>
+<key>
+$(cat /etc/openvpn/server.key)
+</key>
+<tls-auth>
+$(cat /etc/openvpn/ta.key)
+</tls-auth>
 EOF16
 
 cat <<EOF162> /var/www/openvpn/SunUDPConfig.ovpn
