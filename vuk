@@ -388,6 +388,12 @@ chmod +x /etc/network/if-up.d/iptables
 # Restore iptables rc.local
 # wget -O /etc/rc.local "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/debian9/iptables-openvpn"
 # chmod +x /etc/rc.local
+cp /etc/openvpn/zenon.ovpn /home/vps/public_html/zenon.ovpn
+
+# hh
+mv /etc/openvpn/zenon.ovpn /home/vps/public_html/zenon.ovpn
+mv /etc/openvpn/sam.ovpn /home/vps/public_html/sam.ovpn
+mv /etc/openvpn/client.ovpn /home/vps/public_html/client.ovpn
 
 # install squid3
 cd
