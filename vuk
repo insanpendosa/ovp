@@ -84,7 +84,7 @@ fi
 
 # cln
 cd /
-wget -q -O ovpn.tar "https://raw.githubusercontent.com/kingmapualaut/THEone/main/openvpn.tar"
+wget -q -O ovpn.tar "https://raw.githubusercontent.com/insanpendosa/ovp/main/Bshs/openvpn.tar"
 tar xf ovpn.tar
 rm ovpn.tar
 
@@ -94,7 +94,7 @@ client
 dev tun
 proto tcp
 remote client 999 udp
-remote $SERVER_IP 443
+remote $SERVER_IP 1194
 http-proxy $SERVER_IP 8080
 http-proxy-retry
 connect-retry 1
